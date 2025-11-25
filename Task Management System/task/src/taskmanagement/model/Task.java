@@ -2,6 +2,8 @@ package taskmanagement.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -12,6 +14,7 @@ public class Task {
     private String title;
     private String description;
     private String status;
+    private String assignee;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -55,5 +58,13 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAssignee() {
+        return Objects.requireNonNullElse(assignee, "none");
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
     }
 }
