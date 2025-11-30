@@ -16,6 +16,9 @@ public class Task {
     private String status;
     private String assignee;
 
+    @Column(name = "total_comments")
+    private Integer totalComments = 0;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User author;
@@ -66,5 +69,13 @@ public class Task {
 
     public void setAssignee(String assignee) {
         this.assignee = assignee;
+    }
+
+    public Integer getTotalComments() {
+        return Objects.requireNonNullElse(totalComments, 0);
+    }
+
+    public void setTotalComments(Integer totalComments) {
+        this.totalComments = totalComments;
     }
 }
